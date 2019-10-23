@@ -5,7 +5,7 @@ projects:
   - name: eclipsecon-demo
     source:
       type: git
-      location: 'https://github.com/kameshsampath/eclipsecon-demo'
+      location: 'https://github.com/kameshsampath/eclipsecon-quarkus-demo'
 components:
   - id: redhat/vscode-yaml/latest
     type: chePlugin

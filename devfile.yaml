@@ -1,0 +1,51 @@
+apiVersion: 1.0.0
+metadata:
+  name: eclipsecon-demo
+projects:
+  - name: eclipsecon-demo
+    source:
+      type: git
+      location: 'https://github.com/kameshsampath/eclipsecon-demo'
+components:
+  - id: redhat/vscode-yaml/latest
+    type: chePlugin
+  - id: redhat/vscode-xml/latest
+    type: chePlugin
+  - id: redhat/java8/latest
+    type: chePlugin
+    preferences:
+      java.configuration.maven.userSettings: /opt/developer/.m2/settings.xml
+  - alias: tools
+    type: kubernetes
+    mountSources: true
+    referenceContent: |
+      apiVersion: v1
+      kind: List
+      items:
+      - apiVersion: v1
+        kind: Pod
+        metadata:
+          name: tutorial-tools
+          labels:
+            app: tools
+        spec:
+          containers:
+          - name: tutorial-tools
+            image: quay.io/rhdevelopers/tutorial-tools:0.0.2
+            imagePullPolicy: IfNotPresent
+            env:
+              - name: TUTORIAL_TOOLS
+                value: /projects/eclipsecon-demo
+              - name: QUARKUS_VERSION
+                value: 0.24.0
+              - name: MAVEN_MIRROR_URL
+                value: 'http://nexus.rhd-workshop-infra:8081/nexus/content/groups/public'
+            resources:
+              limits: 
+                cpu: "4000m"
+                memory: 4Gi
+              requests:
+                cpu: "3000m"
+                memory: "3Gi"
+              workingDir: /opt/developer
+        

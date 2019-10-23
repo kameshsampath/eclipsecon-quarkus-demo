@@ -1,0 +1,16 @@
+= EclipseCon 2019 Demo
+
+Placeholder repo for EclipseCon 2019 Demo
+
+== Postgres Properties
+
+[source,bash]
+----
+quarkus.datasource.url=jdbc:postgresql://localhost:5432/demodb
+quarkus.datasource.driver=org.postgresql.Driver
+quarkus.datasource.username=admin
+quarkus.datasource.password=password
+
+quarkus.hibernate-orm.database.generation=drop-and-create
+quarkus.hibernate-orm.log.sql=true
+----

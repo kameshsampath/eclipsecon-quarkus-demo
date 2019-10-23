@@ -34,7 +34,7 @@ components:
             image: quay.io/rhdevelopers/tutorial-tools:0.0.2
             imagePullPolicy: IfNotPresent
             env:
-              - name: TUTORIAL_TOOLS
+              - name: TUTORIAL_HOME
                 value: /projects/eclipsecon-demo
               - name: QUARKUS_VERSION
                 value: 0.24.0

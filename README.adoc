@@ -2,6 +2,31 @@
 
 Placeholder repo for EclipseCon 2019 Demo
 
+== Create Project
+
+[source,bash]
+----
+mvn io.quarkus:quarkus-maven-plugin:$QUARKUS_VERSION:create \
+  -DprojectGroupId="com.example" \
+  -DprojectArtifactId="fruits-app" \
+  -DprojectVersion="1.0-SNAPSHOT" \
+  -DclassName="FruitResource" \
+  -Dpath="fruit"
+----
+
+== Dev Mode
+[source,bash]
+----
+mvn compile quarkus:dev
+----
+
+== DB 
+
+[source,bash]
+----
+mvn quarkus:add-extension -Dextension="quarkus-resteasy-jsonb, quarkus-jdbc-postgresql, quarkus-hibernate-orm-panache, quarkus-smallrye-openapi,swagger-ui"
+----
+
 == Postgres Properties
 
 [source,bash]
@@ -13,4 +38,19 @@ quarkus.datasource.password=password
 
 quarkus.hibernate-orm.database.generation=drop-and-create
 quarkus.hibernate-orm.log.sql=true
+----
+
+Load some data
+
+[source,bash]
+----
+INSERT INTO Fruit(id,name,season) VALUES (nextval('hibernate_sequence'),"Mango","Spring");
+INSERT INTO Fruit(id,name,season) VALUES (nextval('hibernate_sequence'),"Strawberry","Spring");
+INSERT INTO Fruit(id,name,season) VALUES (nextval('hibernate_sequence'),"Orange","Winter");
+INSERT INTO Fruit(id,name,season) VALUES (nextval('hibernate_sequence'),"GrapeFruit","Winter");
+INSERT INTO Fruit(id,name,season) VALUES (nextval('hibernate_sequence'),"Blueberry","Summer");
+INSERT INTO Fruit(id,name,season) VALUES (nextval('hibernate_sequence'),"Banana","Summer");
+INSERT INTO Fruit(id,name,season) VALUES (nextval('hibernate_sequence'),"Plum","Summer");
+INSERT INTO Fruit(id,name,season) VALUES (nextval('hibernate_sequence'),"Apple","Fall");
+INSERT INTO Fruit(id,name,season) VALUES (nextval('hibernate_sequence'),"Grapes","Fall");
 ----
